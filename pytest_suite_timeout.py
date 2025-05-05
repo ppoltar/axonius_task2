@@ -6,7 +6,7 @@ def pytest_addoption(parser):
         "--suite-timeout",
         action="store",
         type=int,
-        default=None,
+        default=900,
         help="Set a timeout (in seconds) for the entire test suite"
     )
 
@@ -28,7 +28,7 @@ def pytest_runtest_setup(item):
     if hasattr(session, "suite_timeout") and session.suite_timeout is not None:
         elapsed = time() - session.start_time
         if elapsed > session.suite_timeout:
-            session.exceeded_timeout = True
+            pytest.exit("Test suite exceeded timeout limit. Aborting test run.")
 
 def pytest_runtest_call(item):
     if getattr(item.session, "exceeded_timeout", False):
