@@ -21,9 +21,13 @@ def pytest_addoption(parser):
         help="Set a timeout (in seconds) for the entire test suite"
     )
 
-def _timeout_handler():
+def _timeout_handler(signum, frame):
     """
     Handler function that is invoked when the test suite exceeds the timeout limit.
+
+    Args:
+        signum (int): The signal number.
+        frame (frame): The current stack frame.
 
     Raises:
         SystemExit: Exits the pytest session and aborts all remaining tests with a custom message.
