@@ -7,7 +7,7 @@ def pytest_addoption(parser):
         "--suite-timeout",
         action="store",
         type=int,
-        default=10,
+        default=900,
         help="Set a timeout (in seconds) for the entire test suite"
     )
 
