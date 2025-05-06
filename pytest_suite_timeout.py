@@ -32,7 +32,7 @@ def _timeout_handler(signum, frame):
     Raises:
         SystemExit: Exits the pytest session and aborts all remaining tests with a custom message.
     """
-    pytest.exit("❌ Test suite exceeded the timeout limit. Aborting all remaining tests.")
+    pytest.exit("❌ Test suite exceeded the timeout limit. Aborting all remaining tests in suits.")
 
 def pytest_sessionstart(session):
     """
@@ -68,6 +68,6 @@ def pytest_sessionfinish(session, exitstatus):
 
     Args:
         session (pytest.Session): The pytest session object representing the test session.
-        exitstatus (int): The exit status code of the test session (not used in this function).
+        exitstatus (int): The exit status code of the test session.
     """
     signal.alarm(0)
